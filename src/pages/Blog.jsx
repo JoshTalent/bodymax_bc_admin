@@ -31,6 +31,7 @@ import {
 import Navbar from "../components/Navbar";
 import axios from "axios";
 
+
 const AdminBlog = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -76,7 +77,7 @@ const AdminBlog = () => {
   const [tagInput, setTagInput] = useState("");
 
   // API Configuration
-  const API_BASE_URL = "http://localhost:8000/api";
+  const API_BASE_URL = "https://bodymax-bc-backend.onrender.com/api";
 
   // Categories
   const categories = [
@@ -429,27 +430,38 @@ const AdminBlog = () => {
 
       {/* Main Content */}
       <main className="md:ml-[18%] min-h-screen pt-16 md:pt-0 max-sm:pl-14 max-sm:pt-0">
-        {/* Top Bar */}
-        <div className="sticky top-0 z-40 bg-white border-b border-gray-200 px-4 sm:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-              Blog Management
-            </h1>
-            <div className="flex items-center gap-2">
+        {/* Advanced Clean Hero Section */}
+        <div className="bg-white border-b border-gray-100 px-4 sm:px-8 py-8 sm:py-10">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2.5 mb-2">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Publisher Control Room
+                </span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 mb-2">
+                Blog Publications
+              </h1>
+              <p className="text-sm text-slate-600 max-w-xl">
+                Create, format, and publish professional editorial guides, technique tips, and success stories for the BodyMax community.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
               <button
                 onClick={refreshData}
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 sm:px-4 py-2 rounded-xl font-medium transition-all duration-200 flex items-center gap-2 text-sm sm:text-base"
+                className="bg-slate-50 hover:bg-slate-100 text-slate-700 active:bg-slate-200 px-4 py-2.5 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 border border-slate-200 text-sm shadow-sm"
               >
-                <RefreshCw size={18} />
-                <span className="hidden sm:inline">Refresh</span>
+                <RefreshCw size={16} className="text-slate-500" />
+                <span>Sync Articles</span>
               </button>
               <button
                 onClick={handleAdd}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-xl font-medium transition-all duration-200 flex items-center gap-2 shadow-lg shadow-blue-600/25 text-sm sm:text-base"
+                className="bg-slate-900 hover:bg-slate-800 text-white active:bg-slate-950 px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 text-sm shadow-md shadow-slate-900/10 border border-slate-900"
               >
-                <Plus size={20} />
-                <span className="hidden sm:inline">New Post</span>
-                <span className="sm:hidden">Add</span>
+                <Plus size={18} />
+                <span>Write New Post</span>
               </button>
             </div>
           </div>
@@ -558,21 +570,19 @@ const AdminBlog = () => {
                 <div className="flex items-center gap-1 sm:gap-2 bg-gray-50 rounded-lg sm:rounded-xl p-1">
                   <button
                     onClick={() => setViewMode("grid")}
-                    className={`p-1.5 sm:p-2 rounded-lg transition-all ${
-                      viewMode === "grid"
-                        ? "bg-blue-600 text-white"
-                        : "text-gray-600 hover:bg-gray-200"
-                    }`}
+                    className={`p-1.5 sm:p-2 rounded-lg transition-all ${viewMode === "grid"
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-600 hover:bg-gray-200"
+                      }`}
                   >
                     <Grid size={16} className="sm:w-5 sm:h-5" />
                   </button>
                   <button
                     onClick={() => setViewMode("list")}
-                    className={`p-1.5 sm:p-2 rounded-lg transition-all ${
-                      viewMode === "list"
-                        ? "bg-blue-600 text-white"
-                        : "text-gray-600 hover:bg-gray-200"
-                    }`}
+                    className={`p-1.5 sm:p-2 rounded-lg transition-all ${viewMode === "list"
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-600 hover:bg-gray-200"
+                      }`}
                   >
                     <List size={16} className="sm:w-5 sm:h-5" />
                   </button>
@@ -714,21 +724,19 @@ const AdminBlog = () => {
                           <div className="flex items-center justify-between gap-2 pt-2 border-t border-gray-100">
                             <button
                               onClick={() => toggleFeatured(post)}
-                              className={`text-[10px] sm:text-xs px-2 py-1 rounded-lg transition-colors ${
-                                post.featured
-                                  ? "bg-purple-100 text-purple-700 hover:bg-purple-200"
-                                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                              }`}
+                              className={`text-[10px] sm:text-xs px-2 py-1 rounded-lg transition-colors ${post.featured
+                                ? "bg-purple-100 text-purple-700 hover:bg-purple-200"
+                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                }`}
                             >
                               {post.featured ? "Featured" : "Mark Featured"}
                             </button>
                             <button
                               onClick={() => toggleStatus(post)}
-                              className={`text-[10px] sm:text-xs px-2 py-1 rounded-lg transition-colors ${
-                                post.status === "published"
-                                  ? "bg-green-100 text-green-700 hover:bg-green-200"
-                                  : "bg-yellow-100 text-yellow-700 hover:bg-yellow-200"
-                              }`}
+                              className={`text-[10px] sm:text-xs px-2 py-1 rounded-lg transition-colors ${post.status === "published"
+                                ? "bg-green-100 text-green-700 hover:bg-green-200"
+                                : "bg-yellow-100 text-yellow-700 hover:bg-yellow-200"
+                                }`}
                             >
                               {post.status === "published"
                                 ? "Published"
@@ -938,11 +946,10 @@ const AdminBlog = () => {
                     <button
                       key={i + 1}
                       onClick={() => handlePageChange(i + 1)}
-                      className={`px-3 py-1 rounded-lg text-sm ${
-                        pagination.currentPage === i + 1
-                          ? "bg-blue-600 text-white"
-                          : "bg-white border border-gray-300 hover:bg-gray-50"
-                      }`}
+                      className={`px-3 py-1 rounded-lg text-sm ${pagination.currentPage === i + 1
+                        ? "bg-blue-600 text-white"
+                        : "bg-white border border-gray-300 hover:bg-gray-50"
+                        }`}
                     >
                       {i + 1}
                     </button>
@@ -1442,18 +1449,11 @@ const AdminBlog = () => {
                 </div>
 
                 {/* Content */}
-                <div className="prose max-w-none space-y-6 text-gray-700">
-                  {previewItem.content ? (
-                    previewItem.content.split('\n\n').map((para, idx) => (
-                      <p key={idx} className="leading-relaxed">
-                        {para}
-                      </p>
-                    ))
-                  ) : (
-                    <p className="text-gray-600 leading-relaxed italic">
-                      Full article content would appear here...
-                    </p>
-                  )}
+                <div className="prose max-w-none">
+                  <p className="text-gray-600 leading-relaxed">
+                    {previewItem.content ||
+                      "Full article content would appear here..."}
+                  </p>
                 </div>
 
                 {/* Stats */}
@@ -1490,11 +1490,10 @@ const AdminBlog = () => {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
-            className={`fixed top-4 sm:top-6 right-4 sm:right-6 z-50 px-4 sm:px-6 py-3 sm:py-4 rounded-xl shadow-xl flex items-center gap-2 sm:gap-3 ${
-              notification.type === "success"
-                ? "bg-green-50 border border-green-200 text-green-800"
-                : "bg-red-50 border border-red-200 text-red-800"
-            } text-sm sm:text-base`}
+            className={`fixed top-4 sm:top-6 right-4 sm:right-6 z-50 px-4 sm:px-6 py-3 sm:py-4 rounded-xl shadow-xl flex items-center gap-2 sm:gap-3 ${notification.type === "success"
+              ? "bg-green-50 border border-green-200 text-green-800"
+              : "bg-red-50 border border-red-200 text-red-800"
+              } text-sm sm:text-base`}
           >
             {notification.type === "success" ? (
               <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
